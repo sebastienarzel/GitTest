@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+	As DOCTYPE either 
+	the strict XHTML declaration or 
+	"-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd"
+	shall be used as described in the HbbTV-standard: A.2.6.2.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- 
+	Required XML-namespace as described in the HbbTV-standard: A.2.6.2. 
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		 
+			Required MIME content type as described in the HbbTV-standard: A.2.6.2.
+		-->
+		<meta http-equiv="Content-Type" content="application/vnd.hbbtv.xml+xhtml; utf-8" />
+		<link rel="stylesheet" href="HelloWorld.css" />
+    	<title>Hello World HbbTV Application</title>
+		<script type="text/javascript" src="HelloWorld.js"></script>
+		<script type="text/javascript" src="keycodes.js"></script>
+		<script type="text/javascript">
+				window.onload = function() {
+						initApp();
+						registerKeyEventListener();
+				};
+				
+				function handleKeyCode(kc) {
+					if (kc==VK_UP) {
+					    var app = document.getElementById('appMan').getOwnerApplication(document);
+						app.hide();
+						return true;
+					}
+					
+					else if (kc==VK_DOWN) {
+						var app = document.getElementById('appMan').getOwnerApplication(document);						
+						var toto = document.getElementById('broadcast');
+						toto.release();
+						return true;
+					}
+					return false;	
+			    }
+		 </script>
+
+	</head>
+
+	<!--<body onload="initApp();">-->
+	<body>
+
+
+		<div>
+			<!--
+				ApplicationManager extracts information out of the AIT (such as lifecycle, autostart, etc.) 
+			-->
+    		<object style="width:0;height:0;position: absolute;" id="appMan" type="application/oipfApplicationManager"></object>
+		</div>
+		<div class="safe_area" id="app_area">
+		
+			<div id="background_plane"></div>
+			<div id="header_field"></div>
+			<div id="content_field"></div>
+			<div id="info_field"></div>
+			<div id="videoarea"> </div>
+		
+		</div>
+	</body>
+
+</html>
